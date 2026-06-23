@@ -10,7 +10,7 @@ export default function ReceiptPage() {
   const [receipt, setReceipt] = useState<any>(null);
 
   useEffect(() => {
-    apiGet(`/transactions/${txnId}`).then((data) => setReceipt(data));
+    apiGet(`api/purchase/${txnId}`).then((data) => setReceipt(data));
   }, [txnId]);
 
   if (!receipt) return <div className="page"><p className="muted">Loading receipt…</p></div>;

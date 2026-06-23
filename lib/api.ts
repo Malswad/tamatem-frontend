@@ -1,5 +1,5 @@
 // lib/api.ts
-const BASE_URL = "https://your-api.com"; // ← replace with your real API base URL
+const BASE_URL = "http://127.0.0.1:8000/"; // ← replace with your real API base URL
 
 // reads the saved login token from the browser
 function getToken() {

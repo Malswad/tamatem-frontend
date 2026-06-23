@@ -14,7 +14,7 @@ export default function LoginPage() {
   async function handleLogin() {
     setError("");
     try {
-      const res = await fetch(`${BASE_URL}/login`, {
+      const res = await fetch(`${BASE_URL}api/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -22,7 +22,7 @@ export default function LoginPage() {
       if (!res.ok) throw new Error("Invalid credentials");
 
       const data = await res.json();
-      localStorage.setItem("token", data.token); // ← save the token the API returns
+      localStorage.setItem("token", data.access); // ← save the token the API returns
       router.push("/games"); // ← go to the games list
     } catch (e) {
       setError("Login failed. Check your username and password.");

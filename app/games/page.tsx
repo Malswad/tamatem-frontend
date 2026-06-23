@@ -14,7 +14,7 @@ export default function GamesPage() {
       router.push("/login"); // not logged in → bounce to login
       return;
     }
-    apiGet("/games")
+    apiGet("api/products")
       .then((data) => setGames(data))
       .catch(() => router.push("/login"));
   }, []);

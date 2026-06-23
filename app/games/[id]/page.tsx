@@ -11,7 +11,7 @@ export default function GameDetailPage() {
   const [buying, setBuying] = useState(false);
 
   useEffect(() => {
-    apiGet(`/games/${id}`).then((data) => setGame(data));
+    apiGet(`api/products/${id}`).then((data) => setGame(data));
   }, [id]);
 
   async function handleBuy() {
