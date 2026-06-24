@@ -21,21 +21,34 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-.page { max-width: 720px; margin: 0 auto; padding: 48px 20px; }
+/* Expanded container size to comfortably fit 3 columns side-by-side */
+.page { max-width: 2400px; margin: 0 auto; padding: 48px 20px; }
 .page-narrow { max-width: 360px; }
 
 .title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 24px; }
 .title span { color: var(--red); }
 
+/* Added flex-direction to allow neat inner vertical spacing inside your grid layout */
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px 18px;
   transition: background .15s, transform .15s, border-color .15s;
+  height: 100%;
 }
-.card-link { display: block; text-decoration: none; color: var(--text); }
+.card-link { display: flex; text-decoration: none; color: var(--text); }
 .card-link:hover { background: var(--surface-2); border-color: var(--red); transform: translateY(-2px); }
+
+/* Grid container layout */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
 
 .stack > * + * { margin-top: 12px; }
 
@@ -62,10 +75,23 @@ body {
 }
 .muted { color: var(--muted); }
 .error { color: var(--red); margin-top: 8px; }
-.row { display: flex; justify-content: space-between; align-items: center; }
+.row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
 .badge-success {
   display: inline-block; background: rgba(46,204,113,0.12); color: var(--green);
   border: 1px solid var(--green); border-radius: 999px; padding: 4px 14px;
   font-weight: 700; font-size: 13px;
+}
+
+/* Responsiveness: Drops columns on smaller windows */
+@media (max-width: 900px) {
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .games-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile phones */
+  }
 }

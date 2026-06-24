@@ -17,7 +17,7 @@ export default function GameDetailPage() {
   async function handleBuy() {
     setBuying(true);
     try {
-      const receipt = await apiPost("/transactions", { gameId: id });
+      const receipt = await apiPost("api/purchase/", { gameId: id });
       router.push(`/receipt/${receipt.id}`); // go to the receipt page
     } catch (e) {
       setBuying(false);
@@ -30,9 +30,9 @@ export default function GameDetailPage() {
   return (
     <div className="page page-narrow">
       <div className="card stack">
-        <h1 className="title" style={{ marginBottom: 4 }}>{game.name}</h1>
-        {game.genre && <span className="tag">{game.genre}</span>}
-        <p className="muted">{game.description}</p>
+        <h1 className="title" style={{ marginBottom: 4 }}>{game.title}</h1>
+        {game. description && <span className="tag">{game.description}</span>}
+        <p className="muted">{game.location}</p>
         <p className="price" style={{ fontSize: 22 }}>${game.price}</p>
         <button className="btn btn-primary" onClick={handleBuy} disabled={buying}>
           {buying ? "Processing…" : "Buy now"}

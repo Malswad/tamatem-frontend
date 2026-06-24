@@ -19,20 +19,40 @@ export default function GamesPage() {
       .catch(() => router.push("/login"));
   }, []);
 
-  return (
-    <div className="page">
-      <h1 className="title">Game<span>Store</span></h1>
-      <div className="stack">
-        {games.map((game) => (
-          <Link key={game.id} href={`/games/${game.id}`} className="card card-link">
-            <div className="row">
-              <strong>{game.name}</strong>
-              <span className="price">${game.price}</span>
+return (
+  <div className="page">
+    <h1 className="title">Game<span>Store</span></h1>
+
+    {/* This container activates the 3-column grid layout */}
+    <div className="games-grid">
+      {games.map((game) => (
+        <Link key={game.id} href={`/games/${game.id}`} className="card card-link">
+
+          {/* Top row of the card: Title */}
+          <div className="row" style={{ alignItems: 'flex-start', marginBottom: '16px' }}>
+            <strong style={{ fontSize: '18px', lineHeight: '1.4' }}>{game.title}</strong>
+          </div>
+
+          {/* Bottom row of the card: Location and Price pushed down */}
+          <div className="row" style={{ marginTop: 'auto', gap: '8px' }}>
+            <span className="muted" style={{ fontSize: '14px', display: 'flex', alignItems: 'center' }}>
+              📍 {game.location}
+            </span>
+            <span className="price">${game.price}</span>
+          </div>
+
+          {/* Optional: Genre tag displays underneath if it exists */}
+          {game.genre && (
+            <div style={{ marginTop: '8px' }}>
+              <span className="tag">{game.genre}</span>
             </div>
-            {game.genre && <span className="tag">{game.genre}</span>}
-          </Link>
-        ))}
-      </div>
+          )}
+
+        </Link>
+      ))}
     </div>
-  );
+  </div>
+);
+
+
 }
