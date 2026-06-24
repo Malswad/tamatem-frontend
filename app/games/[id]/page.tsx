@@ -17,8 +17,11 @@ export default function GameDetailPage() {
   async function handleBuy() {
     setBuying(true);
     try {
-      const receipt = await apiPost("api/purchase/", { gameId: id });
-      router.push(`/receipt/${receipt.id}`); // go to the receipt page
+      const response = await apiPost("api/purchase/", {
+        product_id: id,
+        quantity: 1,
+      });
+      router.push(`/receipt/${response.receipt.id}`); // go to the receipt page
     } catch (e) {
       setBuying(false);
       alert("Purchase failed.");
