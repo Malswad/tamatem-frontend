@@ -12,7 +12,7 @@ export default function Home() {
     if (!token) {
       router.replace("/login");
     } else {
-      router.replace("/products");
+      router.replace("/games");
     }
   }, [router]);
 
