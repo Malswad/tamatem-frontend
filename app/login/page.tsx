@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
-const BASE_URL = "http://127.0.0.1:8000/"; // same base as in lib/api.ts
+const BASE_URL = "http://127.0.0.1:8000/";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const { login } = useAuth(); // <-- Get login function
 
   async function handleLogin() {
     setError("");
@@ -22,8 +24,8 @@ export default function LoginPage() {
       if (!res.ok) throw new Error("Invalid credentials");
 
       const data = await res.json();
-      localStorage.setItem("token", data.access); // ← save the token the API returns
-      router.push("/games"); // ← go to the games list
+      login(data.access); // <-- Use context login (it sets localStorage + state)
+      router.push("/games");
     } catch (e) {
       setError("Login failed. Check your username and password.");
     }
