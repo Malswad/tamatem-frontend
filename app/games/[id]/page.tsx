@@ -31,7 +31,7 @@ export default function GameDetailPage() {
   if (!game) return <div className="page"><p className="muted">Loading…</p></div>;
 
   return (
-    <div className="page page-narrow">
+    <div className="page">
       <div className="card stack">
         <h1 className="title" style={{ marginBottom: 4 }}>{game.title}</h1>
         {game. description && <span className="tag">{game.description}</span>}
